@@ -1,0 +1,22 @@
+{
+    "name": "Date Time PWA",
+    "short_name": "DateTime",
+    "description": "Aplikasi Jam dan Tanggal Real-Time",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#203a43",
+    "theme_color": "#203a43",
+    "icons": [
+      {
+        "src": "icon-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "icon-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
+  

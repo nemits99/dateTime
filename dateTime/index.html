@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date & Time</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        /* Background gradient */
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Container */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            min-width: 300px;
+            width: auto;
+        }
+
+        /* Heading */
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Date & Time Box */
+        #date, #time {
+            font-size: 22px;
+            font-weight: bold;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: inline-block;
+            width: 90%;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Animasi glow efek */
+        #time {
+            font-size: 30px;
+            letter-spacing: 2px;
+            color: #00ff99;
+            text-shadow: 0px 0px 10px rgba(0, 255, 153, 0.8);
+        }
+
+        /* Animasi perubahan */
+        #time:hover, #date:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Current Date & Time</h2>
+        <div id="date"></div>
+        <div id="time"></div>
+    </div>
+
+    <script>
+        function updateTime() {
+            let now = new Date();
+
+            let hari = now.getDay();
+            let tanggal = now.getDate();
+            let bulan = now.getMonth();
+            let tahun = now.getFullYear();
+            let jam = now.getHours();
+            let menit = now.getMinutes();
+            let detik = now.getSeconds();
+
+            // Format agar dua digit (misalnya: 09:05:02)
+            jam = jam < 10 ? "0" + jam : jam;
+            menit = menit < 10 ? "0" + menit : menit;
+            detik = detik < 10 ? "0" + detik : detik;
+
+            let namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            let namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+            document.getElementById("date").textContent = `📅 ${namaHari[hari]}, ${tanggal} ${namaBulan[bulan]} ${tahun}`;
+            document.getElementById("time").textContent = `⏰ ${jam}:${menit}:${detik}`;
+        }
+
+        setInterval(updateTime, 1000); 
+        updateTime(); 
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+            .then(() => console.log("Service Worker Registered"))
+            .catch(err => console.log("Service Worker Failed: ", err));
+        }
+    </script>
+</body>
+</html>
